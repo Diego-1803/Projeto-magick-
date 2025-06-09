@@ -219,7 +219,7 @@
   <script>
   document.querySelector('.btn-filtrar').addEventListener('click', () => {
     const categoriaSelecionada = document.getElementById('categoria').value.toLowerCase();
-    const precoMax = parseFloat(document.getElementById('preco').value);
+    const precoMax = parseFloat(document.getElementById('preco').value.replace(',', '.'));
 
     const cartas = document.querySelectorAll('.carta');
 
@@ -237,6 +237,6 @@
       }
     });
   });
-  </script>
+                                                          </script>
 </body>
 </html>
