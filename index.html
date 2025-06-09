@@ -216,5 +216,27 @@
   <footer class="rodape">
     @2025 - Todos os direitos reservados
   </footer>
+  <script>
+  document.querySelector('.btn-filtrar').addEventListener('click', () => {
+    const categoriaSelecionada = document.getElementById('categoria').value.toLowerCase();
+    const precoMax = parseFloat(document.getElementById('preco').value);
+
+    const cartas = document.querySelectorAll('.carta');
+
+    cartas.forEach(carta => {
+      const categoriaCarta = carta.dataset.categoria.toLowerCase();
+      const precoCarta = parseFloat(carta.dataset.preco);
+
+      const categoriaOk = !categoriaSelecionada || categoriaCarta === categoriaSelecionada;
+      const precoOk = isNaN(precoMax) || precoCarta <= precoMax;
+
+      if (categoriaOk && precoOk) {
+        carta.style.display = 'block';
+      } else {
+        carta.style.display = 'none';
+      }
+    });
+  });
+  </script>
 </body>
 </html>
