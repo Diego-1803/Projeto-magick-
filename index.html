@@ -217,26 +217,25 @@
     @2025 - Todos os direitos reservados
   </footer>
   <script>
-  document.querySelector('.btn-filtrar').addEventListener('click', () => {
-    const categoriaSelecionada = document.getElementById('categoria').value.toLowerCase();
-    const precoMax = parseFloat(document.getElementById('preco').value.replace(',', '.'));
+  document.querySelector(".btn-filtrar").addEventListener("click", function () {
+    const categoriaSelecionada = document.getElementById("categoria").value.toLowerCase();
+    const precoMaximo = parseFloat(document.getElementById("preco").value.replace(",", "."));
+    const cartas = document.querySelectorAll(".carta");
 
-    const cartas = document.querySelectorAll('.carta');
+    cartas.forEach((carta) => {
+      const categoriaCarta = carta.getAttribute("data-categoria").toLowerCase();
+      const precoCarta = parseFloat(carta.getAttribute("data-preco"));
 
-    cartas.forEach(carta => {
-      const categoriaCarta = carta.dataset.categoria.toLowerCase();
-      const precoCarta = parseFloat(carta.dataset.preco);
+      const categoriaCombina = !categoriaSelecionada || categoriaCarta === categoriaSelecionada;
+      const precoCombina = isNaN(precoMaximo) || precoCarta <= precoMaximo;
 
-      const categoriaOk = !categoriaSelecionada || categoriaCarta === categoriaSelecionada;
-      const precoOk = isNaN(precoMax) || precoCarta <= precoMax;
-
-      if (categoriaOk && precoOk) {
-        carta.style.display = 'block';
+      if (categoriaCombina && precoCombina) {
+        carta.style.display = "block";
       } else {
-        carta.style.display = 'none';
+        carta.style.display = "none";
       }
     });
   });
-                                                          </script>
+  </script>                                                   </script>
 </body>
 </html>
